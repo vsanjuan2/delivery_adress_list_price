@@ -14,9 +14,9 @@ class SaleOrder(models.Model):
         if delivery_id:
             partner = self.pool.get('res.partner').browse(
                 cr, uid, delivery_id, context=context)
-            if partner.property_product_pricelist:
+            if partner.delivery_pricelist_id:
                 res['value']['pricelist_id'] =\
-                    partner.property_product_pricelist.id
+                    partner.delivery_pricelist_id.id
         return res
 
     def onchange_partner_id(self, cr, uid, ids, part, context=None):
